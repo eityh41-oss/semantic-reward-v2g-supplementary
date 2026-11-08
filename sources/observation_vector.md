@@ -23,7 +23,7 @@ The hour $t$, operating period $p_t$, operator profile $z_t$, and reward-model c
 ## Action $a_t$ (20 dims, each in $[-1, 1]$)
 
 | index | dims | content |
-|---|---|---|
+|------|-----|-----------------------------------|
 | 0–9 | 10 | active charging (+) / discharging (−) fraction per EVCS, scaled by $P^{\max}_{C/D} = 22\,\text{kW} \times N_{EV}$ |
 | 10–19 | 10 | reactive power fraction per EVCS, bounded by $\sqrt{S_{\max}^2 - P^2}$ |
 
