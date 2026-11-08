@@ -17,12 +17,12 @@ return,Score-only Reward,33,C,-2.395104,1.446270,3
 return,Score-only Reward,69,V,-4.460757,2.925022,3
 return,Score-only Reward,69,S,-1.265028,0.214460,3
 return,Score-only Reward,69,C,-3.982432,1.035409,3
-return,Price–Service Adaptive Reward (PSA),33,V,-3.267641,0.038075,3
-return,Price–Service Adaptive Reward (PSA),33,S,-0.956043,0.004928,3
-return,Price–Service Adaptive Reward (PSA),33,C,0.482615,0.001676,3
-return,Price–Service Adaptive Reward (PSA),69,V,-3.535162,0.069025,3
-return,Price–Service Adaptive Reward (PSA),69,S,-1.061466,0.030806,3
-return,Price–Service Adaptive Reward (PSA),69,C,0.009182,0.002569,3
+return,PSA,33,V,-3.267641,0.038075,3
+return,PSA,33,S,-0.956043,0.004928,3
+return,PSA,33,C,0.482615,0.001676,3
+return,PSA,69,V,-3.535162,0.069025,3
+return,PSA,69,S,-1.061466,0.030806,3
+return,PSA,69,C,0.009182,0.002569,3
 purchase_cost_kcny,Semantic Reward,33,V,46.182432,0.132995,3
 purchase_cost_kcny,Semantic Reward,33,S,45.819696,0.186262,3
 purchase_cost_kcny,Semantic Reward,33,C,44.766763,0.030119,3
@@ -41,12 +41,12 @@ purchase_cost_kcny,Score-only Reward,33,C,47.434933,1.090707,3
 purchase_cost_kcny,Score-only Reward,69,V,53.849760,4.254288,3
 purchase_cost_kcny,Score-only Reward,69,S,54.334205,3.438161,3
 purchase_cost_kcny,Score-only Reward,69,C,51.676416,1.609012,3
-purchase_cost_kcny,Price–Service Adaptive Reward (PSA),33,V,44.797858,0.017790,3
-purchase_cost_kcny,Price–Service Adaptive Reward (PSA),33,S,44.797805,0.014708,3
-purchase_cost_kcny,Price–Service Adaptive Reward (PSA),33,C,44.769618,0.003793,3
-purchase_cost_kcny,Price–Service Adaptive Reward (PSA),69,V,47.135870,0.016556,3
-purchase_cost_kcny,Price–Service Adaptive Reward (PSA),69,S,47.147824,0.035228,3
-purchase_cost_kcny,Price–Service Adaptive Reward (PSA),69,C,47.134421,0.000324,3
+purchase_cost_kcny,PSA,33,V,44.797858,0.017790,3
+purchase_cost_kcny,PSA,33,S,44.797805,0.014708,3
+purchase_cost_kcny,PSA,33,C,44.769618,0.003793,3
+purchase_cost_kcny,PSA,69,V,47.135870,0.016556,3
+purchase_cost_kcny,PSA,69,S,47.147824,0.035228,3
+purchase_cost_kcny,PSA,69,C,47.134421,0.000324,3
 service_deficit_24h,Semantic Reward,33,V,2.781012,0.043293,3
 service_deficit_24h,Semantic Reward,33,S,2.633222,0.027755,3
 service_deficit_24h,Semantic Reward,33,C,2.696562,0.115191,3
@@ -65,12 +65,12 @@ service_deficit_24h,Score-only Reward,33,C,4.083580,2.062999,3
 service_deficit_24h,Score-only Reward,69,V,2.467549,0.079178,3
 service_deficit_24h,Score-only Reward,69,S,2.861608,0.273848,3
 service_deficit_24h,Score-only Reward,69,C,2.909740,0.171684,3
-service_deficit_24h,Price–Service Adaptive Reward (PSA),33,V,2.356143,0.105412,3
-service_deficit_24h,Price–Service Adaptive Reward (PSA),33,S,2.344360,0.110155,3
-service_deficit_24h,Price–Service Adaptive Reward (PSA),33,C,2.251889,0.014139,3
-service_deficit_24h,Price–Service Adaptive Reward (PSA),69,V,2.467425,0.029184,3
-service_deficit_24h,Price–Service Adaptive Reward (PSA),69,S,2.479450,0.040690,3
-service_deficit_24h,Price–Service Adaptive Reward (PSA),69,C,2.419755,0.006379,3
+service_deficit_24h,PSA,33,V,2.356143,0.105412,3
+service_deficit_24h,PSA,33,S,2.344360,0.110155,3
+service_deficit_24h,PSA,33,C,2.251889,0.014139,3
+service_deficit_24h,PSA,69,V,2.467425,0.029184,3
+service_deficit_24h,PSA,69,S,2.479450,0.040690,3
+service_deficit_24h,PSA,69,C,2.419755,0.006379,3
 voltage_violation_rate,Semantic Reward,33,V,0.008101851851851851,0.003614003471295369,3
 voltage_violation_rate,Semantic Reward,33,S,0.01909722222222222,0.010560351615101077,3
 voltage_violation_rate,Semantic Reward,33,C,0.057291666666666664,0.00868055555555556,3
@@ -89,12 +89,12 @@ voltage_violation_rate,Score-only Reward,33,C,0.41261574074074076,0.289594227190
 voltage_violation_rate,Score-only Reward,69,V,0.11863425925925926,0.10021938544324346,3
 voltage_violation_rate,Score-only Reward,69,S,0.07233796296296297,0.02885985564766593,3
 voltage_violation_rate,Score-only Reward,69,C,0.41435185185185186,0.010172682772712348,3
-voltage_violation_rate,Price–Service Adaptive Reward (PSA),33,V,0.07060185185185185,0.0050117210867155,3
-voltage_violation_rate,Price–Service Adaptive Reward (PSA),33,S,0.06944444444444445,0.005208333333333336,3
-voltage_violation_rate,Price–Service Adaptive Reward (PSA),33,C,0.07465277777777778,0.0017361111111111119,3
-voltage_violation_rate,Price–Service Adaptive Reward (PSA),69,V,0.10706018518518517,0.0026519535271735226,3
-voltage_violation_rate,Price–Service Adaptive Reward (PSA),69,S,0.10300925925925926,0.008018753738744798,3
-voltage_violation_rate,Price–Service Adaptive Reward (PSA),69,C,0.11168981481481481,0.0020046884346862017,3
+voltage_violation_rate,PSA,33,V,0.07060185185185185,0.0050117210867155,3
+voltage_violation_rate,PSA,33,S,0.06944444444444445,0.005208333333333336,3
+voltage_violation_rate,PSA,33,C,0.07465277777777778,0.0017361111111111119,3
+voltage_violation_rate,PSA,69,V,0.10706018518518517,0.0026519535271735226,3
+voltage_violation_rate,PSA,69,S,0.10300925925925926,0.008018753738744798,3
+voltage_violation_rate,PSA,69,C,0.11168981481481481,0.0020046884346862017,3
 network_loss_mwh,Semantic Reward,33,V,6.638926,0.290271,3
 network_loss_mwh,Semantic Reward,33,S,5.998557,0.255247,3
 network_loss_mwh,Semantic Reward,33,C,4.261836,0.010845,3
@@ -113,12 +113,12 @@ network_loss_mwh,Score-only Reward,33,C,9.223123,2.547213,3
 network_loss_mwh,Score-only Reward,69,V,17.323242,7.405831,3
 network_loss_mwh,Score-only Reward,69,S,18.020032,5.503195,3
 network_loss_mwh,Score-only Reward,69,C,13.572189,2.639087,3
-network_loss_mwh,Price–Service Adaptive Reward (PSA),33,V,4.312847,0.016813,3
-network_loss_mwh,Price–Service Adaptive Reward (PSA),33,S,4.318544,0.010147,3
-network_loss_mwh,Price–Service Adaptive Reward (PSA),33,C,4.321876,0.001514,3
-network_loss_mwh,Price–Service Adaptive Reward (PSA),69,V,5.130012,0.022027,3
-network_loss_mwh,Price–Service Adaptive Reward (PSA),69,S,5.148057,0.059720,3
-network_loss_mwh,Price–Service Adaptive Reward (PSA),69,C,5.122622,0.006397,3
+network_loss_mwh,PSA,33,V,4.312847,0.016813,3
+network_loss_mwh,PSA,33,S,4.318544,0.010147,3
+network_loss_mwh,PSA,33,C,4.321876,0.001514,3
+network_loss_mwh,PSA,69,V,5.130012,0.022027,3
+network_loss_mwh,PSA,69,S,5.148057,0.059720,3
+network_loss_mwh,PSA,69,C,5.122622,0.006397,3
 contract_passed,Semantic Reward,33,V,0.944444,0.024056,3
 contract_passed,Semantic Reward,33,S,0.972222,0.024056,3
 contract_passed,Semantic Reward,33,C,0.902778,0.104859,3
@@ -137,9 +137,9 @@ contract_passed,Score-only Reward,33,C,0.666667,0.577350,3
 contract_passed,Score-only Reward,69,V,0.944444,0.096225,3
 contract_passed,Score-only Reward,69,S,0.805556,0.168394,3
 contract_passed,Score-only Reward,69,C,0.958333,0.041667,3
-contract_passed,Price–Service Adaptive Reward (PSA),33,V,1.000000,0.000000,3
-contract_passed,Price–Service Adaptive Reward (PSA),33,S,1.000000,0.000000,3
-contract_passed,Price–Service Adaptive Reward (PSA),33,C,1.000000,0.000000,3
-contract_passed,Price–Service Adaptive Reward (PSA),69,V,1.000000,0.000000,3
-contract_passed,Price–Service Adaptive Reward (PSA),69,S,1.000000,0.000000,3
-contract_passed,Price–Service Adaptive Reward (PSA),69,C,1.000000,0.000000,3
+contract_passed,PSA,33,V,1.000000,0.000000,3
+contract_passed,PSA,33,S,1.000000,0.000000,3
+contract_passed,PSA,33,C,1.000000,0.000000,3
+contract_passed,PSA,69,V,1.000000,0.000000,3
+contract_passed,PSA,69,S,1.000000,0.000000,3
+contract_passed,PSA,69,C,1.000000,0.000000,3
