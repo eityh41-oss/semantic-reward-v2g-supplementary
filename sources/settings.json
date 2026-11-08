@@ -1,0 +1,162 @@
+{
+  "protocol_version": "revised manuscript (TSG-02158-2026 revision), 2026-10-29",
+  "systems": {
+    "33": {
+      "feeder": "modified IEEE 33-bus distribution network, 10 EVCSs",
+      "observation_dim": 59
+    },
+    "69": {
+      "feeder": "IEEE 69-bus feeder (12.66 kV, 3.80 MW nominal load), 10 EVCSs",
+      "observation_dim": 95
+    }
+  },
+  "preferences": {
+    "V": {
+      "name": "voltage first",
+      "objective_order": [
+        "voltage security",
+        "charging service",
+        "cost"
+      ],
+      "priority_metric": "voltage violation rate"
+    },
+    "S": {
+      "name": "service first",
+      "objective_order": [
+        "charging service",
+        "voltage security",
+        "cost"
+      ],
+      "priority_metric": "waiting deficit"
+    },
+    "C": {
+      "name": "cost first",
+      "objective_order": [
+        "cost",
+        "charging service",
+        "voltage security"
+      ],
+      "priority_metric": "purchase cost"
+    }
+  },
+  "policy_training": {
+    "total_episodes": 10000,
+    "seeds": [
+      503,
+      509,
+      521
+    ],
+    "seed_role": "policy and reward-model initialization and training-day sampling; annotations are generated from each run's trajectories",
+    "development_days": 8,
+    "held_out_evaluation_days": 24,
+    "evaluation_actions": "deterministic mean actions",
+    "outer_iterations_K": 100,
+    "episodes_per_iteration": 100,
+    "labeled_steps_per_run": "2400 (100 operating days x 24 steps; 60/20/20 days for fitting, early stopping, held-out evaluation)",
+    "service_constraint": {
+      "scope": "all methods, including the PSA baseline",
+      "form": "end-of-day penalty sum_m mu_m * max(0, K_m - limit_m), K_m in {waiting deficit, departure shortfall}",
+      "multiplier_update": "dual ascent after every block of 20 episodes",
+      "multiplier_cap": 5,
+      "service_limits_met": "share of held-out days on which both K_m are within their limits (Table III row)"
+    }
+  },
+  "reward_model": {
+    "architecture": "MLP with shared encoder, scalar head and semantic projection head",
+    "text_encoder": "bert-base-uncased (mean pooling, 768-d), frozen",
+    "alignment_weight": 0.5,
+    "optimizer": "Adam, lr 1e-3, weight decay 1e-4, batch 64, early-stopping patience 100",
+    "split": {
+      "mode": "by operating day (all steps of a day in one subset)",
+      "fit_days": 60,
+      "early_stopping_days": 20,
+      "held_out_days": 20,
+      "reduced_label_variants_fit_days": [
+        10,
+        20
+      ],
+      "same_split_for_score_only_and_semantic": true,
+      "results": "rm_held_out_results.md"
+    }
+  },
+  "annotator": {
+    "model": "qwen-turbo",
+    "temperature": 0.3,
+    "response_format": "json_object",
+    "request_timeout_s": 180,
+    "max_retries": 10,
+    "episodes_per_batch": 2,
+    "contrastive_pairs_per_batch": 4,
+    "prompt_template": "prompt_template_v6.md",
+    "validation_rules": "validation_stages.md"
+  },
+  "annotator_comparison_fig11": {
+    "seeds": 1,
+    "training_episodes": 1500,
+    "note": "separate single-seed experiment with its own return scale; compared only within Fig. 11"
+  },
+  "psa_baseline": {
+    "name": "Price-Service Adaptive Reward (PSA)",
+    "step_reward": "-(purchase-cost term + 1.0 * voltage-violation term) / s_sys",
+    "s_sys": {
+      "33": 5.09,
+      "69": 4.95
+    },
+    "s_sys_definition": "pooled within-profile standard deviation of the PSA daily score on the initialization data",
+    "service": "only through the shared service constraint above",
+    "information": "no LLM, operator evaluation, or preference information; identical training signal under V, S, C",
+    "other_settings": "same initialization, PPO settings, training-day pool, seeds, and 24 held-out days as the other policies"
+  },
+  "voltage": {
+    "evaluation_band_pu": [
+      0.9,
+      1.1
+    ],
+    "voltage_violation_rate": "fraction of hours in which at least one bus leaves the band",
+    "figure13_reference_lines_pu": [
+      0.9,
+      1.1
+    ],
+    "figure13_reference_lines_meaning": "voltage safety limits used for the reported voltage metrics",
+    "figure13_run": "Semantic Reward, 33-bus voltage-first, seed 503, 10000 episodes; test day 3, reset identifier 2266002",
+    "figure13_selection": "Among the violation-free days for the fixed policy, choose the day whose return is closest to the median return across all 24 test days."
+  },
+  "battery_degradation": {
+    "c_deg_nominal_cny_per_mwh": 116.6,
+    "basis": "LFP pack price 81 USD/kWh, 7.20 CNY/USD, 2,500 equivalent full cycles to 80% capacity, each cycle = charge-plus-discharge throughput of twice the capacity",
+    "main_comparison_c_deg": 0,
+    "sensitivity_multipliers": [
+      0,
+      1,
+      2
+    ],
+    "sensitivity_evaluation": "purchase-plus-degradation cost at the nominal coefficient; 33-bus and 69-bus, 10,000 episodes, 24 held-out days"
+  },
+  "operating_conditions": {
+    "conditions": [
+      "EV fleet 0.8x",
+      "EV fleet 1.2x",
+      "low load with high PV",
+      "concentrated arrivals"
+    ],
+    "modes": [
+      "retraining under each condition (Table VII, Fig. 9)"
+    ]
+  },
+  "language_interface_study": {
+    "texts": 52,
+    "unambiguous": 40,
+    "defective": 12,
+    "expression_types": 9,
+    "writers": "three independent LLM-driven writer agents",
+    "models": {
+      "initial_run": "qwen-turbo",
+      "repeat": "qwen3.8-flash"
+    },
+    "temperature": 0,
+    "requests_per_text": 3,
+    "parser": "keyword parser (v0) and keyword parser with clarification fallback (v1)",
+    "texts_and_outcomes": "language_interface_texts.md"
+  },
+  "cost_display": "kCNY/day"
+}
