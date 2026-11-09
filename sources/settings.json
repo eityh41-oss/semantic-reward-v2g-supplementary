@@ -91,7 +91,6 @@
     "response_format": "json_object",
     "request_timeout_s": 180,
     "max_retries": 10,
-    "episodes_per_batch": 2,
     "contrastive_pairs_per_batch": 4,
     "prompt_template": "prompt_template_v6.md",
     "validation_rules": "validation_stages.md"

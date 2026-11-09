@@ -4,7 +4,6 @@ temperature: 0.3
 response_format: json_object
 request_timeout_s: 180
 max_retries: 10
-batch: 2 episodes x 24 steps (all steps of each labeled day)
 contrastive_pairs: 4
 ---
 
