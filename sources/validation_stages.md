@@ -1,7 +1,9 @@
 # Label-validation checks of the annotation pipeline
 
-Source: `analysis/qwen_batch_calibrated_annotation.py`. The `--validation-mode` switch (`full` = default,
-`format_only`, `none`) is the ablation of Fig. 10(e) in the manuscript.
+Source: `analysis/qwen_batch_calibrated_annotation.py`. During annotation, the `--validation-mode` switch (`full` =
+default, `format_only`, `none`) selects which checks trigger a retry. Fig. 10(e) of the manuscript applies the three
+checks to a subset of 60 structured evaluations generated during annotation, in five configurations: all checks, each
+check removed in turn, and no checks.
 
 ## Format check (stage 1): format / completeness (per batch)
 
@@ -39,6 +41,12 @@ def scalar_labels_from_answer(answer: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 
 ## Step-consistency check (stage 2): per-step consistency with the operator cue (`full` only triggers retries)
+
+A score-hint name gives the band stated to the LLM in the prompt. The check accepts a tolerance around that band and
+rejects only scores that clearly contradict the cue: for example, `moderate_negative_minus3_to_minus5` accepts scores
+from -5 to +2, and `non_negative_0_to_6` sets only the lower bound. Likewise, the high-confidence red-line check rejects a
+severe near-departure shortfall scored above -3 or a severe voltage violation scored above +2, whereas the prompt anchors
+these cases at -6 or below and -5 or below. The prompt anchors guide the LLM; the checks below decide retries.
 
 ```python
 def score_hint_violated(score: float, hint: Any) -> bool:
@@ -101,6 +109,16 @@ def expert_direction_mismatched(score: float, step: Dict[str, Any]) -> bool:
 
 
 ## Dataset-level check (stage 3): batch-level self-check and dataset-level audit
+
+The labels passed to `compute_self_check` are first normalized by `parse_labels_for_batch`, which reads the
+`episode_id` field of the LLM output (or `episode`) and stores it as `episode`:
+
+```python
+episode = int(item.get("episode_id", item.get("episode")))
+step = int(item["step"])
+...
+parsed_item = {"batch_id": str(example["batch_id"]), "episode": episode, "step": step, ...}
+```
 
 `compute_self_check` counts pairwise-order violations, negative scores on protected good anchors,
 missing expert-alignment fields and high-confidence red-line violations; any positive count triggers a retry in

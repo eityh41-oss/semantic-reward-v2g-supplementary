@@ -55,9 +55,15 @@
     "labeled_steps_per_run": "2400 (100 operating days x 24 steps; 60/20/20 days for fitting, early stopping, held-out evaluation)",
     "service_constraint": {
       "scope": "all methods, including the PSA baseline",
-      "form": "end-of-day penalty sum_m mu_m * max(0, K_m - limit_m), K_m in {waiting deficit, departure shortfall}",
+      "form": "end-of-day penalty sum_m mu_m * max(0, K_m - limit_m) / scale_m, K_m in {waiting deficit, departure shortfall}",
       "multiplier_update": "dual ascent after every block of 20 episodes",
       "multiplier_cap": 5,
+      "dual_ascent_step": 0.5,
+      "normalized_excess": "max(0, K_m - limit_m) / scale_m; scale_m = pooled within-preference standard deviation of the daily K_m over the first 500 training episodes",
+      "limits_and_scales": {
+        "33-bus": {"waiting_deficit": {"limit": 3.366, "scale": 5.688}, "departure_shortfall": {"limit": 0.050, "scale": 1.996}},
+        "69-bus": {"waiting_deficit": {"limit": 3.515, "scale": 5.583}, "departure_shortfall": {"limit": 0.050, "scale": 1.983}}
+      },
       "service_limits_met": "share of held-out days on which both K_m are within their limits (Table III row)"
     }
   },
@@ -93,7 +99,7 @@
   "annotator_comparison_fig11": {
     "seeds": 1,
     "training_episodes": 1500,
-    "note": "separate single-seed experiment with its own return scale; compared only within Fig. 11"
+    "note": "separate single-seed experiment in its own scenario; checkpoints every 100 episodes evaluated on the eight development days with the main study's return definition and reporting scale; compared only within Fig. 11"
   },
   "psa_baseline": {
     "name": "Price-Service Adaptive Reward (PSA)",
